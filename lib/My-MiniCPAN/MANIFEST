@@ -1,0 +1,7 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+LICENSES-open-icon-library
+t/00-load-My-MiniCPAN.t
+lib/My/MiniCPAN.pm
