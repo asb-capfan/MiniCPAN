@@ -459,7 +459,7 @@ Builds the GUI.
 
 sub BUILD {
     my $self = shift;
-
+    
     my $mw = $self->mw;
     $mw->geometry('800x450');
     my $sb = $mw->StatusBar();

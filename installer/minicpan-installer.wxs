@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<?define ProductVersion = "0.0.1"?>
+<?define ProductUpgradeCode = "12345678-1234-1234-1234-111111111111"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" UpgradeCode="$(var.ProductUpgradeCode)" Name="MiniCPAN" Version="$(var.ProductVersion)" Manufacturer="PerlTk.de" Language="1033">
+		<Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package" InstallScope='perUser' />
+		<Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+		<!-- Define Instalation Locations-->
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="StartMenuFolder" />
+			<Directory Id="LocalAppDataFolder">
+				<Directory Id="INSTALLLOCATION" Name=".minicpan">
+					<Directory Id="MyAppBinDir" Name="bin" />
+					<Directory Id="MyAppLibDir" Name="lib">
+						<Directory Id="MyAppLibMyMiniCPANDir" Name="My-MiniCPAN">
+							<Directory Id="MyAppLibMyMiniCPANlibDir" Name="lib">
+								<Directory Id="MyAppLibMyMiniCPANlibAutoDir" Name="auto">
+									<Directory Id="MyAppLibMyMiniCPANlibAutoMyDir" Name="My">
+										<Directory Id="MyAppLibMyMiniCPANlibAutoMyMiniCPANDir" Name="MiniCPAN">
+											<Directory Id="MyAppLibMyMiniCPANlibAutoMyMiniCPAN48x48Dir" Name="48x48" />
+											<Directory Id="MyAppLibMyMiniCPANlibAutoMyMiniCPAN64x64Dir" Name="64x64" />
+											<Directory Id="MyAppLibMyMiniCPANlibAutoMyMiniCPAN256x256Dir" Name="256x256" />
+										</Directory>
+									</Directory>
+								</Directory>
+								<Directory Id="MyAppLibMyMiniCPANlibMyDir" Name="My">
+									<Directory Id="MyAppLibMyMiniCPANlibMyMiniCPANDir" Name="MiniCPAN">
+										<Directory Id="MyAppLibMyMiniCPANlibMyMiniCPANSchemaDir" Name="Schema">
+											<Directory Id="MyAppLibMyMiniCPANlibMyMiniCPANSchemaResultDir" Name="Result" />
+										</Directory>
+									</Directory>
+								</Directory>
+							</Directory>
+						</Directory>
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+		<!-- Define Instalation Components-->
+		<DirectoryRef Id="INSTALLLOCATION">
+			<Component Id="Component_ProductFiles" Guid="b3915d8f-0301-40a0-8d09-66076e0ac43e">
+				<RemoveFolder Id="RemoveMyAppDirectory" On="uninstall" />
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="minicpan_config" Name="my-minicpan-config.sqlite" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\dist\my-minicpan-config.sqlite" />
+			</Component>
+		</DirectoryRef>
+		<DirectoryRef Id="MyAppBinDir">
+			<Component Id="Component_ProductBinFiles" Guid="b3915d8f-0301-40a0-8d09-66076e0ac44e">
+				<RemoveFolder Id="RemoveMyAppBinDirectory" On="uninstall" />
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="minicpan.exe" Name="my-minicpan.exe" Source="..\bin\my-minicpan.exe">
+					<Shortcut Id="minicpan_shortcut" Name="MiniCPAN" Directory="StartMenuFolder" />
+				</File>
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="MyAppLibDir">
+			<Component Id="Component_ProductLibFiles" Guid="b3915d8f-0301-40a0-8d09-66076e0ac45e">
+				<RemoveFolder Id="RemoveMyAppLibDirectory" On="uninstall" />
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANDir" Directory="MyAppLibMyMiniCPANDir" On="uninstall" />
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibDir" Directory="MyAppLibMyMiniCPANlibDir" On="uninstall" />
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibAutoDir" Directory="MyAppLibMyMiniCPANlibAutoDir" On="uninstall" />
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibAutoMyDir" Directory="MyAppLibMyMiniCPANlibAutoMyDir" On="uninstall" />
+				
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="MyAppLibMyMiniCPANlibAutoMyMiniCPANDir">
+			<Component Id="Component_dist_files" Guid="b3915d8f-0301-40a0-8d09-66076e0ac49e">
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibAutoMyMiniCPANDir" Directory="MyAppLibMyMiniCPANlibAutoMyMiniCPANDir" On="uninstall" />
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="rgb.txt" Name="rgb.txt" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\rgb.txt" />
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="MyAppLibMyMiniCPANlibAutoMyMiniCPAN48x48Dir">
+			<Component Id="Component_Icons_48x48" Guid="b3915d8f-0301-40a0-8d09-66076e0ac46e">
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibAutoMyMiniCPAN48x48Dir" Directory="MyAppLibMyMiniCPANlibAutoMyMiniCPAN48x48Dir" On="uninstall" />
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="arrow_down_3.png" Name="arrow-down-3.png" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\48x48\arrow-down-3.png" />
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="MyAppLibMyMiniCPANlibAutoMyMiniCPAN64x64Dir">
+			<Component Id="Component_Icons_64x64" Guid="b3915d8f-0301-40a0-8d09-66076e0ac47e">
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibAutoMyMiniCPAN64x64Dir" Directory="MyAppLibMyMiniCPANlibAutoMyMiniCPAN64x64Dir" On="uninstall" />
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="globe2.png" Name="globe2.png" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\64x64\globe2.png" />
+				<File Id="my_computer.png" Name="my_computer.png" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\64x64\my_computer.png" />
+			</Component>
+		</DirectoryRef>
+
+		<DirectoryRef Id="MyAppLibMyMiniCPANlibAutoMyMiniCPAN256x256Dir">
+			<Component Id="Component_Icons_256x256" Guid="b3915d8f-0301-40a0-8d09-66076e0ac48e">
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibAutoMyMiniCPAN256x256Dir" Directory="MyAppLibMyMiniCPANlibAutoMyMiniCPAN256x256Dir" On="uninstall" />
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="system_run_5.png" Name="system-run-5.png" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\256x256\system-run-5.png" />
+				<File Id="system_run_5_15deg.png" Name="system-run-5_15deg.png" Source="..\lib\My-MiniCPAN\lib\auto\My\MiniCPAN\256x256\system-run-5_15deg.png" />
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="MyAppLibMyMiniCPANlibMyMiniCPANDir">
+			<Component Id="Component_Schema" Guid="b3915d8f-0301-40a0-8d09-66076e0ac51e">
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibMyMiniCPANDir" Directory="MyAppLibMyMiniCPANlibMyMiniCPANDir" On="uninstall" />
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibMyDir" Directory="MyAppLibMyMiniCPANlibMyDir" On="uninstall" />
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibMyMiniCPANSchemaDir" Directory="MyAppLibMyMiniCPANlibMyMiniCPANSchemaDir" On="uninstall" />
+				
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="Schema.pm" Name="Schema.pm" Source="..\lib\My-MiniCPAN\lib\My\MiniCPAN\Schema.pm" />
+			</Component>
+		</DirectoryRef>
+		
+		<DirectoryRef Id="MyAppLibMyMiniCPANlibMyMiniCPANSchemaResultDir">
+			<Component Id="Component_Schema_Resultsets" Guid="b3915d8f-0301-40a0-8d09-66076e0ac52e">
+				<RemoveFolder Id="RemoveMyAppLibMyMiniCPANlibMyMiniCPANSchemaResultDir" Directory="MyAppLibMyMiniCPANlibMyMiniCPANSchemaResultDir" On="uninstall" />
+				
+				<RegistryKey Root="HKCU" Key="Software\PerlTk.de\MiniCPAN">
+					<RegistryValue Name="MiniCPAN" Value="1" KeyPath="yes" Type="integer" />
+				</RegistryKey>
+				<File Id="FilterType.pm" Name="FilterType.pm" Source="..\lib\My-MiniCPAN\lib\My\MiniCPAN\Schema\Result\FilterType.pm" />
+				<File Id="ModuleFilter.pm" Name="ModuleFilter.pm" Source="..\lib\My-MiniCPAN\lib\My\MiniCPAN\Schema\Result\ModuleFilter.pm" />
+				<File Id="Option.pm" Name="Option.pm" Source="..\lib\My-MiniCPAN\lib\My\MiniCPAN\Schema\Result\Option.pm" />
+			</Component>
+		</DirectoryRef>
+		
+		<!--Install-->
+		<Feature Id="ProductFeature" Title="MiniCPAN" Level="1">
+			<ComponentRef Id="Component_ProductFiles" />
+			<ComponentRef Id="Component_ProductBinFiles" />
+			<ComponentRef Id="Component_ProductLibFiles" />
+			<ComponentRef Id="Component_dist_files" />
+			<ComponentRef Id="Component_Icons_48x48" />
+			<ComponentRef Id="Component_Icons_64x64" />
+			<ComponentRef Id="Component_Icons_256x256" />
+			<ComponentRef Id="Component_Schema" />
+			<ComponentRef Id="Component_Schema_Resultsets" />
+		</Feature>
+	</Product>
+</Wix>

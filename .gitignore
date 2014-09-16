@@ -28,6 +28,8 @@ bin/mirror.pl
 *.perlapp
 /installer/bak
 /installer/release
+/installer/examples
 /installer/minicpan-installer.wixpdb
 /installer/minicpan-installer.wixobj
 /installer/minicpan-installer.msi
+lib/My-MiniCPAN/lib/My/.~ko-8.5.4-perllint~
