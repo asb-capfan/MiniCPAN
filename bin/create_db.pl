@@ -2,10 +2,15 @@
 
 use strict;
 use warnings;
+use FindBin qw/$Bin/;
+use lib $Bin . '/../lib/My-MiniCPAN/lib';
 use DBI;
 use DBD::SQLite;
+use File::Spec;
+use File::HomeDir;
+use File::ShareDir;
 
-my $database = 'my-minicpan-config.sqlite';
+my $database = File::ShareDir::dist_file('My-MiniCPAN', 'dist/' . 'my-minicpan-config.sqlite');
 unlink $database if -e $database;
 
 my $driver   = "SQLite";

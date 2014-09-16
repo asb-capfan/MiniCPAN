@@ -26,3 +26,8 @@ doc/4-module-filer.png
 bin/mirror.pl
 *.exe
 *.perlapp
+/installer/bak
+/installer/release
+/installer/minicpan-installer.wixpdb
+/installer/minicpan-installer.wixobj
+/installer/minicpan-installer.msi
