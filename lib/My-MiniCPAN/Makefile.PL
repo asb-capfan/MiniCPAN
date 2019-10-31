@@ -34,7 +34,6 @@ WriteMakefile(
         'Tk::ROText' => 1,
         'Tk::PNG' => 1,
         'Tk::Photo' => 1,
-        'Tk::Treeplus' => 1,
         'B::Hooks::EndOfScope::XS' => 1,
         'Variable::Magic' => 1,
         'SQL::Abstract' => 1,
