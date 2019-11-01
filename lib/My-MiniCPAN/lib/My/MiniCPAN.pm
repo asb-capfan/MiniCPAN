@@ -323,7 +323,7 @@ has _cpan_mirror_remote => (
     traits   => [ 'MooseX::Traits::SetScalarByRef' ],
     isa      => 'TkRef',
     init_arg => 'cpan_mirror_remote',
-    default  => 'http://cpan.pair.com/pub/CPAN/',
+    default  => 'http://cpan.metacpan.org/',
     handles  => 1,
 );
 
