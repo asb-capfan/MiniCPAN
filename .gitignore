@@ -33,3 +33,4 @@ bin/mirror.pl
 /installer/minicpan-installer.wixobj
 /installer/minicpan-installer.msi
 lib/My-MiniCPAN/lib/My/.~ko-8.5.4-perllint~
+lib/My-MiniCPAN/lib/My/.~ko-10.2.3-perllint~
