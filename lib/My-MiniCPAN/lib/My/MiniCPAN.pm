@@ -1175,12 +1175,22 @@ sub _build_mirror_definition_area {
         -text => 'e.g. http://artfiles.org/cpan.org/ ',
     )->pack(-fill => 'x');
     
-    $cpan_remote_frame->Label(
-        -text => "Note: You can find a mirror here: www.cpan.org/SITES.html",
-        -anchor => 'w',
+    my $cpan_sites_hint_frame = $cpan_remote_frame->Frame(
         -bg => 'white',
+    )->pack(-fill => 'x');
+    
+    #$cpan_sites_hint_frame->Label(
+    #    -text => "Note: You can find a mirror here: www.cpan.org/SITES.html",
+    #    -anchor => 'w',
+    #    -bg => 'white',
+    #)->pack(-fill => 'x',);
+    
+    my $cpan_sites_hint_rotext = $cpan_sites_hint_frame->ROText(
+        -width => 30,
+        -height => 1,
     )->pack(-fill => 'x',);
     
+    $cpan_sites_hint_rotext->insert("end", "Note: You can find a mirror here: www.cpan.org/SITES.html");
     
     
     # row in the middle
