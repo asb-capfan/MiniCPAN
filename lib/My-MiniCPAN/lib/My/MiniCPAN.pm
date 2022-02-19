@@ -1666,7 +1666,7 @@ If you have a web site set up for your module, mention it here.
 
 =head1 AUTHOR
 
-Alexander Becker, E<lt>c a p f a n -at- g m x -dot- d eE<gt>
+Alexander Becker, E<lt>asb@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
